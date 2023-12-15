@@ -3,13 +3,18 @@ import { createWebHashHistory, createRouter } from "vue-router"
 const homeRoutes = [
 	{
 		path: "/",
-		name: "Home",
+		name: "首页",
 		component: () => import("@/views/home/card.vue")
 	},
 	{
 		path: "/passbook",
 		name: "存折取款",
 		component: () => import("@/views/home/passbook.vue")
+	},
+	{
+		path: "/businessChoices",
+		name: "业务选择",
+		component: () => import("@/views/home/businessChoices.vue")
 	}
 ]
 // 搜索页面的路由
@@ -31,21 +36,30 @@ const searchRoutes = [
 	}
 ]
 
+// 涉及转账的路由
+const depositRoutes = [
+	{
+		path: "/transfer",
+		name: "转账",
+		component: () => import("@/views/transfer/index.vue")
+	},
+	{
+		path: "/transfer/amount",
+		name: "转账金额",
+		component: () => import("@/views/transfer/amount.vue")
+	}
+]
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes: [
 		{
-			path: "/transfer",
-			name: "转账",
-			component: () => import("@/views/transfer/index.vue")
-		},
-		{
-			path: "/changepwd",
+			path: "/changePwd",
 			name: "改密",
-			component: () => import("@/views/changepwd/index.vue")
+			component: () => import("@/views/changePwd/index.vue")
 		},
 		...homeRoutes,
-		...searchRoutes
+		...searchRoutes,
+		...depositRoutes
 	]
 })
 

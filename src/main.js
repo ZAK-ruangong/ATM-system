@@ -9,7 +9,7 @@ import "@/router/guard/guard.js"
 // 组件库图标
 import * as ElementPlusIconsVue from "@element-plus/icons-vue"
 // 组件库样式
-import 'element-plus/dist/index.css'
+import "element-plus/dist/index.css"
 
 const app = createApp(App)
 

@@ -1,8 +1,8 @@
 <template>
 	<el-scrollbar>
 		<el-container class="w-100vw h-100vh">
-			<el-header class="text-center">
-				<h1>ATM系统</h1>
+			<el-header>
+				<Header />
 			</el-header>
 			<el-main>
 				<router-view />
@@ -11,6 +11,8 @@
 	</el-scrollbar>
 </template>
 
-<script setup></script>
+<script setup>
+import Header from './components/layout/Header.vue'
+</script>
 
 <style></style>

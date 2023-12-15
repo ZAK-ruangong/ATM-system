@@ -3,7 +3,7 @@
 		<div class="text-center">
 			<div class="text-6 mb-10">
 				<div>余额信息</div>
-				<div class="text-6">BALANCE INFORMATION</div>
+				<div>BALANCE INFORMATION</div>
 			</div>
 			<el-card body-class="w-100 h-80">
 				<div class="flex flex-col gap-15 items-start">
@@ -23,8 +23,8 @@
 			</div>
 		</div>
 		<div class="flex flex-col gap-6">
-			<el-button>取款/Withdrawal</el-button>
-			<el-button>转账/Transfer</el-button>
+			<el-button @click="router.push('/withdrawal')">取款/Withdrawal</el-button>
+			<el-button @click="router.push('/transfer')">转账/Transfer</el-button>
 			<el-button class="color-green!" @click="router.back()"
 				>返回/Back</el-button
 			>

@@ -1,5 +1,8 @@
 <template>
-	<div>改密码</div>
+	<div>
+		<div></div>
+		<div></div>
+	</div>
 </template>
 
 <script setup></script>

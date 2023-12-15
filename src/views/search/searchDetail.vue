@@ -7,15 +7,17 @@
 			</div>
 			<el-table :data="balanceDetails" style="width: 100%" fit>
 				<el-table-column prop="date" label="交易时间" />
-				<el-table-column prop="type" label="交易类别"  />
-				<el-table-column prop="account" label="交易金额" />
+				<el-table-column prop="type" label="交易类别" />
+				<el-table-column prop="amount" label="交易金额" />
 				<el-table-column prop="balance" label="可用余额" />
 				<el-table-column prop="to_user" label="转账用户" />
 			</el-table>
 		</div>
 		<div class="flex flex-col gap-6">
 			<el-button @click="getReceipt">打印凭条</el-button>
-			<el-button class="color-green!" @click="router.back()">返回/Back</el-button>
+			<el-button class="color-green!" @click="router.back()"
+				>返回/Back</el-button
+			>
 			<el-button class="color-red!">退卡/Exit</el-button>
 		</div>
 	</div>
@@ -30,25 +32,21 @@ const balanceDetails = reactive([])
 // 打印凭条
 const receiptDialogVisible = ref(false)
 const getReceipt = () => {
-	ElMessageBox.confirm(
-		'确定要打印凭条吗',
-		'Warning',
-		{
-			confirmButtonText: '确认',
-			cancelButtonText: '取消',
-			type: 'warning',
-		},
-	)
+	ElMessageBox.confirm("确定要打印凭条吗", "Warning", {
+		confirmButtonText: "确认",
+		cancelButtonText: "取消",
+		type: "warning"
+	})
 		.then(() => {
 			ElMessage({
-				type: 'success',
-				message: '打印凭条成功',
+				type: "success",
+				message: "打印凭条成功"
 			})
 		})
 		.catch(() => {
 			ElMessage({
-				type: 'info',
-				message: '取消打印',
+				type: "info",
+				message: "取消打印"
 			})
 		})
 	receiptDialogVisible.value = false
@@ -60,6 +58,5 @@ const getReceipt = () => {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
 }
 </style>
