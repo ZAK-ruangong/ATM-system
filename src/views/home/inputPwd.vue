@@ -1,14 +1,9 @@
 <template>
-  <div>
-    <h1>
-      请输入您的密码
-    </h1>
-  </div>
+	<div>
+		<h1>请输入您的密码</h1>
+	</div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

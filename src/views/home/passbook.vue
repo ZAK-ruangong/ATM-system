@@ -13,19 +13,21 @@
 		</div>
 		<div class="fw-600 text-6 my-4">请插入存折</div>
 		<div>WELCOME TO</div>
-		<div>
-			USE BOC ATM SYSTEM
-		</div>
+		<div>USE BOC ATM SYSTEM</div>
 		<div>
 			PLEASE INSERT PASSBOOK
-			<el-button class="color-green! absolute right-0" @click="router.back()">返回/Back</el-button>
+			<el-button
+				class="color-green! absolute right-0"
+				@click="router.back()"
+				>返回/Back</el-button
+			>
 		</div>
 	</div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue"
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router"
 import { formatTime } from "@/utils/format.js"
 const router = useRouter()
 

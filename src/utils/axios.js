@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const service = (config) => {
+const service = (config)=> {
 	const instance = axios.create({
 		baseURL: "",
 		timeout: 10 * 1000,
