@@ -1,0 +1,120 @@
+<template>
+    <!-- P1 -->
+    <div v-if="pageNumber === 0" class="wd-box flex items-start w-full p-8!">
+
+        <div class="wd-left-sidebar flex flex-col items-end gap-8">
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(100)">100</el-button>
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(200)">200</el-button>
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(500)">500</el-button>
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(1000)">1000</el-button>
+        </div>
+
+        <div class="wd-content items-center flex flex-col w-full p-4 h-full!" >
+            <h1 class="mb-16! text-5! font-900! p-t-4! color-#333">请选择或输入取款金额</h1>
+            <input type="number" v-model.number="wdInput" class="p-1.5! w-80% max-w-2xl opacity-80 mb-40!" :readonly="isReadonly">
+            <div class="text-3 text-center">
+                <p >本机只提供100元面额人民币</p>
+                <p>且单笔体现最多不超过10000元</p>
+            </div>
+        </div>
+
+        <div class="wd-right-sidebar flex flex-col items-end gap-8">
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(2000)">2000</el-button>
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="changeReadonly(false)">输入金额</el-button>
+            <el-button class="w-30! h-15! fw-700! opacity-80" @click="getCash">取款</el-button>
+            <el-button class="w-30! h-15! opacity-80 color-red! fw-700!" @click="backPage"> 返回</el-button>
+        </div>
+    </div>
+    <!-- P2 SUCCESSFUL -->
+    <div v-else-if="pageNumber === 1" class="wd-box flex items-start w-full p-8!">
+
+<div class="wd-left-sidebar flex flex-col items-end gap-8">
+    <el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default" ></el-button>
+    <el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default" ></el-button>
+    <el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default" ></el-button>
+    <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(1000)">1000</el-button>
+</div>
+
+<div class="wd-content items-center flex flex-col w-full p-4 h-full!" >
+    <h1 class="mb-16! text-5! font-900! p-t-4! color-#333">请选择或输入取款金额</h1>
+    <input type="number" v-model.number="wdInput" class="p-1.5! w-80% max-w-2xl opacity-80 mb-40!" :readonly="isReadonly">
+    <div class="text-3 text-center">
+        <p >本机只提供100元面额人民币</p>
+        <p>且单笔体现最多不超过10000元</p>
+    </div>
+</div>
+
+<div class="wd-right-sidebar flex flex-col items-end gap-8">
+    <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(2000)">2000</el-button>
+    <el-button class="w-30! h-15! fw-700! opacity-80" @click="changeReadonly(false)">输入金额</el-button>
+    <el-button class="w-30! h-15! fw-700! opacity-80" @click="getCash">取款</el-button>
+    <el-button class="w-30! h-15! opacity-80 color-red! fw-700!" @click="backPage"> 返回</el-button>
+</div>
+    </div>
+
+</template>
+
+<script setup>
+import {ref} from 'vue'
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus'
+import axios from 'axios';
+
+const router = useRouter();
+
+// 
+const wdInput = ref(0);
+
+const wdInputValue = (money) => {
+    wdInput.value = money
+    changeReadonly(true);
+}
+
+// 是否自定义金额
+const isReadonly = ref(true);
+
+const changeReadonly = (changeR) => {
+    isReadonly.value = changeR
+}
+
+const backPage = () => {
+    router.push('/businessChoices')
+}
+
+const getCash = () => {
+    if(wdInput.value % 100) {
+        alertMessage('不看提示的盲人请在前台帮助下取款哦亲♥')
+        return
+    }else if (wdInput.value === 0 || wdInput.value === ''){
+        alertMessage("取0元钱就不用麻烦人家了吧♥")
+        return
+    }else {
+
+        alertMessage("取款成功!")
+        console.log(wdInput.value);
+    }
+}
+
+const alertMessage = (textMessage) => {
+  ElMessage({
+    message: textMessage,
+    type: 'warning',
+  })
+}
+
+
+const pageNumber = ref(1);
+
+</script>
+
+<style scoped>
+*{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wd-box {
+    background-color: #C8E0E4 !important;
+}
+</style>
