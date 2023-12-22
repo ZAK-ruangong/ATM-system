@@ -2,17 +2,17 @@
 	<div class="main w-full">
 		<div class="left">
 			<el-button @click="router.push('/search/balance')"
-				>余额查询/Balance</el-button
+				>余额查询</el-button
 			>
 			<el-button @click="router.push('/search/detail')"
-				>明细查询/Detail</el-button
+				>明细查询</el-button
 			>
 		</div>
 		<div class="right">
 			<el-button class="color-green!" @click="router.back()"
-				>返回/Back</el-button
+				>{{$t('back')}}</el-button
 			>
-			<el-button class="color-red!">退卡/Exit</el-button>
+			<el-button class="color-red!">{{$t('exit')}}</el-button>
 		</div>
 	</div>
 </template>

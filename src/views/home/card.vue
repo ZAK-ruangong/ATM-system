@@ -1,46 +1,70 @@
 <template>
-	<div class="flex justify-center items-center flex-col">
-		<div class="flex justify-between items-center full">
-			<span>终端编号:114514</span>
-			<div class="text-6 mx-10 flex flex-col items-center">
-				<span>欢迎您使用中国银行</span>
-				<span>自动柜员机</span>
-			</div>
-			<div class="flex flex-col justify-center items-center">
-				<span>{{ day }}</span>
-				<span>{{ time }}</span>
+	<div class="flex  items-center flex-col" v-if="!isPassbook">
+		<div class="fw-600 text-6 my-4">请插入银行卡</div>
+		<div class="flex">
+			<div class="flex flex-col items-center">
+				<img :src="slotPic" class="w-70!" />
+				<div class="w-full text-center card h-100">
+					<img :src="cardPic" class="w-50" />
+				</div>
 			</div>
 		</div>
-		<div class="fw-600 text-6 my-4">请插入银行卡</div>
-		<div>WELCOME TO</div>
-		<div>USE BOC ATM SYSTEM</div>
-		<div class="flex">
-			PLEASE INSERT CARD
-			<div class="flex flex-col absolute right-0 gap-10">
-				<el-button type="info" @click="router.push('/passbook')"
-					>存折取款</el-button
-				>
-				<el-button type="danger">吞卡/存款异常</el-button>
-			</div>
+		<div class="flex flex-col absolute right-0 gap-10">
+			<el-button @click="isPassbook = true">{{ $t('passbook') }}</el-button>
+			<el-button @click="changeLanguage">{{ $t('changeLanguage') }}</el-button>
+			<el-button @click="router.push('/inputPwd')">{{ $t('putCard') }}</el-button>
+		</div>
+	</div>
+	<div class="flex justify-center items-center flex-col" v-else>
+		<div class="fw-600 text-6 my-4">请插入存折</div>
+		<div class="flex flex-col absolute right-0 gap-10 mt-10">
+			<el-button @click="router.push('/inputPwd')">{{ $t('putPassBook') }}</el-button>
+			<el-button @click="isPassbook = false">{{ $t('back') }}</el-button>
 		</div>
 	</div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue"
-import { useRouter } from "vue-router"
-import { formatTime } from "@/utils/format.js"
+import { i18n } from "@/utils/i18n"
+import { useRouter } from 'vue-router'
 const router = useRouter()
 
-// 时间显示
-const day = formatTime(new Date()).dayStr
-const time = ref(formatTime(new Date()).timeStr)
+const slotPic = ref('')
+const cardPic = ref('')
 
+// 存折还是银行卡
+const isPassbook = ref(false)
+// 切换语言
+const changeLanguage = () => {
+	// 切换语言
+	i18n.global.locale = i18n.global.locale === 'zh-CN' ? 'en' : 'zh-CN'
+}
 onMounted(() => {
-	setInterval(() => {
-		time.value = formatTime(new Date()).timeStr
-	}, 1000)
+	slotPic.value = new URL('../../assets/img/slot.png', import.meta.url)
+	cardPic.value = new URL('../../assets/img/card.png', import.meta.url)
 })
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.card {
+	overflow-y: hidden;
+	transform: translateY(-12%);
+
+	img {
+		animation: move 1s ease-in-out infinite alternate forwards;
+		border-radius: 20px;
+	}
+
+	@keyframes move {
+		0% {
+			transform: translateY(-12%);
+		}
+
+		50%,
+		100% {
+			transform: translateY(5%);
+		}
+	}
+}
+</style>

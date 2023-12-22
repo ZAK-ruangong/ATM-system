@@ -23,12 +23,16 @@
 			</div>
 		</div>
 		<div class="flex flex-col gap-6">
-			<el-button @click="router.push('/withdrawal')">取款/Withdrawal</el-button>
-			<el-button @click="router.push('/transfer')">转账/Transfer</el-button>
-			<el-button class="color-green!" @click="router.back()"
-				>返回/Back</el-button
+			<el-button @click="router.push('/withdrawal')"
+				>{{$t('withdrawal')}}</el-button
 			>
-			<el-button class="color-red!">退卡/Exit</el-button>
+			<el-button @click="router.push('/transfer')"
+				>{{$t('transfer')}}</el-button
+			>
+			<el-button class="color-green!" @click="router.back()"
+				>{{$t('back')}}</el-button
+			>
+			<el-button class="color-red!">{{$t('exit')}}</el-button>
 		</div>
 	</div>
 </template>

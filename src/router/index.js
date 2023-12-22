@@ -7,14 +7,14 @@ const homeRoutes = [
 		component: () => import("@/views/home/card.vue")
 	},
 	{
-		path: "/passbook",
-		name: "存折取款",
-		component: () => import("@/views/home/passbook.vue")
-	},
-	{
 		path: "/businessChoices",
 		name: "业务选择",
 		component: () => import("@/views/home/businessChoices.vue")
+	},
+	{
+		path:'/inputPwd',
+		name:'输入密码',
+		component:()=>import('@/views/home/inputPwd.vue')
 	}
 ]
 // 搜索页面的路由
