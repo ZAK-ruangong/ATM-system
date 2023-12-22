@@ -9,10 +9,10 @@
 			>
 		</div>
 		<div class="right">
-			<el-button class="color-green!" @click="router.back()"
-				>{{$t('back')}}</el-button
-			>
-			<el-button class="color-red!">{{$t('exit')}}</el-button>
+			<el-button class="color-green!" @click="router.back()">{{
+				$t("back")
+			}}</el-button>
+			<el-button class="color-red!">{{ $t("exit") }}</el-button>
 		</div>
 	</div>
 </template>

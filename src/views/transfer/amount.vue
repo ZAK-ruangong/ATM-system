@@ -13,10 +13,10 @@
 		</div>
 		<div>
 			<div class="flex flex-col gap-6">
-				<el-button class="color-green!">{{$t('confirm')}}</el-button>
-				<el-button class="color-red!" @click="router.back()"
-					>{{$t('back')}}</el-button
-				>
+				<el-button class="color-green!">{{ $t("confirm") }}</el-button>
+				<el-button class="color-red!" @click="router.back()">{{
+					$t("back")
+				}}</el-button>
 			</div>
 		</div>
 	</div>

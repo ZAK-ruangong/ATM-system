@@ -23,16 +23,16 @@
 			</div>
 		</div>
 		<div class="flex flex-col gap-6">
-			<el-button @click="router.push('/withdrawal')"
-				>{{$t('withdrawal')}}</el-button
-			>
-			<el-button @click="router.push('/transfer')"
-				>{{$t('transfer')}}</el-button
-			>
-			<el-button class="color-green!" @click="router.back()"
-				>{{$t('back')}}</el-button
-			>
-			<el-button class="color-red!">{{$t('exit')}}</el-button>
+			<el-button @click="router.push('/withdrawal')">{{
+				$t("withdrawal")
+			}}</el-button>
+			<el-button @click="router.push('/transfer')">{{
+				$t("transfer")
+			}}</el-button>
+			<el-button class="color-green!" @click="router.back()">{{
+				$t("back")
+			}}</el-button>
+			<el-button class="color-red!">{{ $t("exit") }}</el-button>
 		</div>
 	</div>
 </template>

@@ -2,8 +2,8 @@
 	<div class="flex flex-col items-center mb-10">
 		<h1>ATM系统</h1>
 		<div class="flex justify-around items-center w-full">
-			<span class="text-4">终端编号:114514</span>
-			<span class="text-6">欢迎您使用xx银行ATM机</span>
+			<span class="text-4">{{ $t('id') }}:114514</span>
+			<span class="text-6">{{ $t('welcome') }}</span>
 			<div class="flex flex-col justify-center items-center">
 				<span>{{ day }}</span>
 				<span>{{ time }}</span>

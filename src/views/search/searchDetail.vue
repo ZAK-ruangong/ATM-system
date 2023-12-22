@@ -16,8 +16,16 @@
 				<span>确定要打印凭条吗</span>
 				<template #footer>
 					<div class="flex justify-between">
-						<el-button class="w-20! h-10!" @click="receiptDialogVisible = false">取消</el-button>
-						<el-button class="w-20! h-10!" type="primary" @click="getReceipt">
+						<el-button
+							class="w-20! h-10!"
+							@click="receiptDialogVisible = false"
+							>取消</el-button
+						>
+						<el-button
+							class="w-20! h-10!"
+							type="primary"
+							@click="getReceipt"
+						>
 							确认
 						</el-button>
 					</div>
@@ -26,8 +34,10 @@
 		</div>
 		<div class="flex flex-col gap-6">
 			<el-button @click="receiptDialogVisible = true">打印凭条</el-button>
-			<el-button class="color-green!" @click="router.back()">{{$t('back')}}</el-button>
-			<el-button class="color-red!">{{$t('exit')}}</el-button>
+			<el-button class="color-green!" @click="router.back()">{{
+				$t("back")
+			}}</el-button>
+			<el-button class="color-red!">{{ $t("exit") }}</el-button>
 		</div>
 	</div>
 </template>
@@ -44,6 +54,4 @@ const getReceipt = () => {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
