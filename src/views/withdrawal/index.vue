@@ -23,7 +23,7 @@
             <el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(2000)">2000</el-button>
             <el-button class="w-30! h-15! fw-700! opacity-80" @click="isReadonly = false">输入金额</el-button>
             <el-button class="w-30! h-15! fw-700! opacity-80" @click="getCash">取款</el-button>
-            <el-button class="w-30! h-15! opacity-80 color-red! fw-700!" @click="backPage"> 返回</el-button>
+            <el-button class="w-30! h-15! opacity-80 color-red! fw-700!" @click="router.back()"> 返回</el-button>
         </div>
     </div>
     <!-- P2 SUCCESSFUL -->
@@ -85,9 +85,9 @@ const wdInputValue = (money) => {
 // 是否自定义金额
 
 // 返回
-const backPage = () => {
-    router.push('/businessChoices')
-}
+// const backPage = () => {
+//     router.push('/businessChoices')
+// }
 
 // 取款
 const getCash = () => {

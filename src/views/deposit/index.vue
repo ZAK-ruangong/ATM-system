@@ -33,14 +33,15 @@
             <el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
             <el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
             <el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
-            <el-button class="w-30! h-15! fw-700! opacity-80" @click="finishDeposit">结束放钞</el-button>
+            <el-button v-show="isdeposit" class="w-30! h-15! fw-700! opacity-80" @click="finishDeposit">结束放钞</el-button>
+            <el-button v-show="!isdeposit" class="color-red! w-30! h-15! fw-700! opacity-80" @click="router.back()">返回</el-button>
         </div>
 
         <div class="wd-content items-center flex flex-col w-full p-4 h-full!">
 
             <h1 v-show="!isdeposit" class="mb-4! text-5! font-900! p-t-4! color-#333">请将现金放入存款槽</h1>
             <h1 v-show="isdeposit" class="mb-4! text-5! font-900! p-t-4! color-#333">存款信息明细</h1>
-                <el-table v-show="isdeposit" :data="depositData" stripe style="width: 32rem"  class="max-w-2xl! mb-14! max-h-50">
+                <el-table v-show="isdeposit" :data="depositData" stripe style="width: 24rem"  class="max-w-2xl! mb-14! max-h-50">
                 <el-table-column prop="num" label="面值"/>
                 <el-table-column prop="counts" label="数目"/>
                 <el-table-column prop="account" label="交易金额" />
@@ -65,6 +66,8 @@
 
 <script setup>
 import { ref } from "vue";
+import {useRouter} from 'vue-router'
+const router = useRouter();
 const isdeposit = ref(false);
 const depositData = ref([]);
 const DEPOSIT_DATA = [
