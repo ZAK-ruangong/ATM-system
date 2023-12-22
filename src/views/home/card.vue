@@ -1,6 +1,6 @@
 <template>
 	<div class="flex items-center flex-col" v-if="!isPassbook">
-		<div class="fw-600 text-6 my-4">{{ $t('pleasePutCard') }}</div>
+		<div class="fw-600 text-6 my-4">{{ $t("pleasePutCard") }}</div>
 		<div class="flex">
 			<div class="flex flex-col items-center">
 				<img :src="slotPic" class="w-70!" />
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="flex justify-center items-center flex-col" v-else>
-		<div class="fw-600 text-6 my-4">{{ $t('pleasePutPassBook') }}</div>
+		<div class="fw-600 text-6 my-4">{{ $t("pleasePutPassBook") }}</div>
 		<div class="flex flex-col absolute right-0 gap-10 mt-10">
 			<el-button @click="router.push('/inputPwd')">{{
 				$t("putPassBook")

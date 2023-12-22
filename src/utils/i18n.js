@@ -17,11 +17,11 @@ export const i18n = createI18n({
 			changeLanguage: "切换语言",
 			putCard: "插卡",
 			putPassBook: "插存折",
-      welcome:'欢迎您使用XXX银行ATM机',
-      pleasePutCard:'请插入银行卡',
-      pleasePutPassBook:'请插入存折',
-      PleaseInputPwd:'请输入密码',
-      id:'终端编号'
+			welcome: "欢迎您使用XXX银行ATM机",
+			pleasePutCard: "请插入银行卡",
+			pleasePutPassBook: "请插入存折",
+			PleaseInputPwd: "请输入密码",
+			id: "终端编号"
 		},
 		en: {
 			confirm: "Confirm",
@@ -37,11 +37,11 @@ export const i18n = createI18n({
 			changeLanguage: "Switch Language",
 			putCard: "Put card",
 			putPassBook: "Put passbook",
-      welcome:'Welcome to use XXX Bank ATM',
-      pleasePutCard:'Please insert your bank card',
-      pleasePutPassBook:'Please insert your passbook',
-      PleaseInputPwd:'Please enter your password',
-      id:'Terminal ID'
+			welcome: "Welcome to use XXX Bank ATM",
+			pleasePutCard: "Please insert your bank card",
+			pleasePutPassBook: "Please insert your passbook",
+			PleaseInputPwd: "Please enter your password",
+			id: "Terminal ID"
 		}
 		// 可以添加其他语言的消息
 	}
