@@ -16,7 +16,7 @@
 			<el-button @click="changeLanguage">{{
 				$t("changeLanguage")
 			}}</el-button>
-			<el-button @click="router.push('/inputPwd')">{{
+			<el-button @click="put">{{
 				$t("putCard")
 			}}</el-button>
 		</div>
@@ -24,7 +24,7 @@
 	<div class="flex justify-center items-center flex-col" v-else>
 		<div class="fw-600 text-6 my-4">{{ $t("pleasePutPassBook") }}</div>
 		<div class="flex flex-col absolute right-0 gap-10 mt-10">
-			<el-button @click="router.push('/inputPwd')">{{
+			<el-button @click="put">{{
 				$t("putPassBook")
 			}}</el-button>
 			<el-button @click="isPassbook = false">{{ $t("back") }}</el-button>
@@ -36,6 +36,7 @@
 import { ref, onMounted } from "vue"
 import { i18n } from "@/utils/i18n"
 import { useRouter } from "vue-router"
+
 const router = useRouter()
 
 const slotPic = ref("")
@@ -45,8 +46,12 @@ const cardPic = ref("")
 const isPassbook = ref(false)
 // 切换语言
 const changeLanguage = () => {
-	// 切换语言
 	i18n.global.locale = i18n.global.locale === "zh-CN" ? "en" : "zh-CN"
+}
+// 插卡
+const put = (type)=>{
+	localStorage.setItem('cardId',"6100700240001078666")
+	router.push('/inputPwd')
 }
 onMounted(() => {
 	slotPic.value = new URL("../../assets/img/slot.png", import.meta.url)

@@ -1,7 +1,8 @@
 /* eslint-disable indent */
 import axios from "axios"
+import { ElLoading, ElMessage } from "element-plus"
 
-const BASE_URL = "http://localhost:8088"
+const BASE_URL = "http://1.116.150.155:8088/api"
 
 const TIME_OUT = 10000
 
@@ -45,7 +46,6 @@ const service = (config) => {
 	instance.interceptors.request.use(
 		(config) => {
 			// 请求之前做什么
-			console.log("请求拦截器" + config)
 			const { loading = true } = config
 			if (loading) {
 				addLoading()
@@ -60,7 +60,6 @@ const service = (config) => {
 	instance.interceptors.response.use(
 		(res) => {
 			// 对响应数据做什么
-			console.log("响应拦截器" + res)
 			const { loading = true } = res.config
 			if (loading) {
 				removeLoading()
@@ -80,9 +79,6 @@ const service = (config) => {
 			}
 		},
 		(error) => {
-			console.log("error-response:" + error.response)
-			console.log("error-config:" + error.config)
-			console.log("error-request:" + error.request)
 			const { loading = true } = error.config
 			if (loading) {
 				removeLoading()
@@ -146,11 +142,19 @@ const service = (config) => {
 	return instance
 }
 
-export default service
+// post方法封装
+export const post = (url,params)=>{
+  return service({
+    method: "post",
+    url,
+    params
+  }).then(response => {
+    // 处理请求成功时的数据
+    return response;
+  }).catch(error => {
+    // 处理请求失败时的错误
+    return Promise.reject(error);
+  });
+}
 
-// 使用
-// import service from "@/utils/axios"
-// const request = service{配置})
-// request.get("/api/user/info").then(res => {
-// 	console.log(res)
-// })
+export default service()
