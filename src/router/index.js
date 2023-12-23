@@ -53,20 +53,20 @@ const depositRoutes = [
 // 存取款/缴费路由
 const payRoutes = [
 	{
-		path:"/withdrawal",
-		name:"Withdrawal",
+		path: "/withdrawal",
+		name: "Withdrawal",
 		component: () => import("@/views/withdrawal/index.vue")
 	},
 	{
-		path:"/deposit",
-		name:"Deposit",
+		path: "/deposit",
+		name: "Deposit",
 		component: () => import("@/views/deposit/index.vue")
 	},
 	{
-		path:"/livingpayment",
-		name:"Livingpayment",
+		path: "/livingpayment",
+		name: "Livingpayment",
 		component: () => import("@/views/livingpayment/index.vue")
-	},
+	}
 ]
 const router = createRouter({
 	history: createWebHashHistory(),
@@ -79,7 +79,7 @@ const router = createRouter({
 		...homeRoutes,
 		...searchRoutes,
 		...depositRoutes,
-		...payRoutes,
+		...payRoutes
 	]
 })
 
