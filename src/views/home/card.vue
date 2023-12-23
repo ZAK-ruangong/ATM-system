@@ -16,17 +16,13 @@
 			<el-button @click="changeLanguage">{{
 				$t("changeLanguage")
 			}}</el-button>
-			<el-button @click="put">{{
-				$t("putCard")
-			}}</el-button>
+			<el-button @click="put">{{ $t("putCard") }}</el-button>
 		</div>
 	</div>
 	<div class="flex justify-center items-center flex-col" v-else>
 		<div class="fw-600 text-6 my-4">{{ $t("pleasePutPassBook") }}</div>
 		<div class="flex flex-col absolute right-0 gap-10 mt-10">
-			<el-button @click="put">{{
-				$t("putPassBook")
-			}}</el-button>
+			<el-button @click="put">{{ $t("putPassBook") }}</el-button>
 			<el-button @click="isPassbook = false">{{ $t("back") }}</el-button>
 		</div>
 	</div>
@@ -49,9 +45,9 @@ const changeLanguage = () => {
 	i18n.global.locale = i18n.global.locale === "zh-CN" ? "en" : "zh-CN"
 }
 // 插卡
-const put = (type)=>{
-	localStorage.setItem('cardId',"6100700240001078666")
-	router.push('/inputPwd')
+const put = () => {
+	localStorage.setItem("cardId", "6100700240001078666")
+	router.push("/inputPwd")
 }
 onMounted(() => {
 	slotPic.value = new URL("../../assets/img/slot.png", import.meta.url)

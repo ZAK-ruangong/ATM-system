@@ -143,18 +143,20 @@ const service = (config) => {
 }
 
 // post方法封装
-export const post = (url,params)=>{
-  return service({
-    method: "post",
-    url,
-    params
-  }).then(response => {
-    // 处理请求成功时的数据
-    return response;
-  }).catch(error => {
-    // 处理请求失败时的错误
-    return Promise.reject(error);
-  });
+export const post = (url, params) => {
+	return service({
+		method: "post",
+		url,
+		params
+	})
+		.then((response) => {
+			// 处理请求成功时的数据
+			return response
+		})
+		.catch((error) => {
+			// 处理请求失败时的错误
+			return Promise.reject(error)
+		})
 }
 
 export default service()
