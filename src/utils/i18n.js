@@ -17,7 +17,7 @@ export const i18n = createI18n({
 			changeLanguage: "切换语言",
 			putCard: "插卡",
 			putPassBook: "插存折",
-			welcome: "欢迎您使用XXX银行ATM机",
+			welcome: "欢迎您使用XXXXX银行ATM机",
 			pleasePutCard: "请插入银行卡",
 			pleasePutPassBook: "请插入存折",
 			PleaseInputPwd: "请输入密码",
