@@ -16,9 +16,6 @@ module.exports = {
 	},
 	plugins: ["vue"],
 	rules: {
-		indent: ["error", "tab"],
-		"linebreak-style": ["error", "unix"],
-		quotes: ["error", "double"],
-		semi: ["error", "never"]
+		"vue/multi-word-component-names": "off"
 	}
 }
