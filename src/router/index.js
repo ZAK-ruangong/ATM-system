@@ -23,7 +23,7 @@ const homeRoutes = [
 	{
 		path: "/inputPwd",
 		name: "输入密码",
-		component: () => import("@/views/home/inputPwd.vue"),
+		component: () => import("@/views/home/inputPwd.vue")
 	}
 ]
 // 搜索页面的路由
