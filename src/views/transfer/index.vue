@@ -5,7 +5,7 @@
 				请{{ isConfirmed ? "再次" : "" }}输入转账账号：
 			</p>
 			<el-input
-				v-model="to_account"
+				v-model="transCard"
 				placeholder="请输入转账账号"
 				:prefix-icon="User"
 				class="h-10 w-60!"
@@ -38,10 +38,11 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { User } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
+
 const router = useRouter()
 
 // 转账账号
-const to_account = ref("")
+const transCard = ref("")
 // 是否是二次输入
 const isConfirmed = ref(false)
 const confirmAccount = ref("")
@@ -51,13 +52,13 @@ const confirm = () => {
 		isConfirmed.value = true
 	} else {
 		// 第二次输入
-		if (confirmAccount.value !== to_account.value) {
+		if (confirmAccount.value !== transCard.value) {
 			ElMessage.error({
 				message: "两次输入账号不一致"
 			})
 			return
 		} else {
-			router.push(`/transfer/amount?to_account=${to_account.value}`)
+			router.push(`/transfer/amount?transCard=${transCard.value}`)
 		}
 	}
 }

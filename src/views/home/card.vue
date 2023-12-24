@@ -49,6 +49,7 @@ const put = () => {
 	localStorage.setItem("cardId", "6100700240001078666")
 	router.push("/inputPwd")
 }
+
 onMounted(() => {
 	slotPic.value = new URL("../../assets/img/slot.png", import.meta.url)
 	cardPic.value = new URL("../../assets/img/card.png", import.meta.url)

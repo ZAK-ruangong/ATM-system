@@ -5,6 +5,8 @@ import router from "@/router"
 import "@/assets/css/common.scss"
 import "virtual:uno.css"
 import "element-plus/dist/index.css"
+import axios from "axios"
+
 // 路由守卫
 import "@/router/guard/guard.js"
 // 组件库图标
@@ -14,6 +16,7 @@ import "element-plus/dist/index.css"
 // i18n
 import { i18n } from "./utils/i18n"
 
+axios.defaults.baseURL = "http://1.116.150.155:8088/atm/"
 const app = createApp(App)
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
