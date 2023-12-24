@@ -34,6 +34,7 @@ import useCardStore from "@/store/card.js"
 
 const { logout } = useCardStore()
 const router = useRouter()
+
 const logOut = () => {
 	logout()
 	router.push("/")
