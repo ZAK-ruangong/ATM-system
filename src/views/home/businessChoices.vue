@@ -34,8 +34,13 @@ import useCardStore from "@/store/card.js"
 
 const { logout } = useCardStore()
 const router = useRouter()
+<<<<<<< HEAD
 const logOut = () => {
 	logout()
+=======
+const logout = () => {
+	localStorage.removeItem('cardId')
+>>>>>>> 8d8daf8baa4f19d4984928698816095a7466e8f9
 	router.push("/")
 }
 </script>
