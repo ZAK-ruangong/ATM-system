@@ -7,7 +7,7 @@ const homeRoutes = [
 		component: () => import("@/views/home/card.vue"),
 		beforeEnter: (to, from, next) => {
 			// 如果已经有cardId了，就直接选择业务
-			const cardId = localStorage.getItem("cardId");
+			const cardId = localStorage.getItem("cardId")
 			if (cardId) {
 				next("/businessChoices")
 			} else {
@@ -26,7 +26,7 @@ const homeRoutes = [
 		component: () => import("@/views/home/inputPwd.vue"),
 		beforeEnter: (to, from, next) => {
 			// 如果已经有cardId了，就直接选择业务
-			const cardId = localStorage.getItem("cardId");
+			const cardId = localStorage.getItem("cardId")
 			if (cardId) {
 				next("/businessChoices")
 			} else {

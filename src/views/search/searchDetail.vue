@@ -5,7 +5,12 @@
 				<div>余额信息</div>
 				<div class="text-6">BALANCE INFORMATION</div>
 			</div>
-			<el-table :data="balanceDetails" fit max-height="290" style="width: 800px">
+			<el-table
+				:data="balanceDetails"
+				fit
+				max-height="290"
+				style="width: 800px"
+			>
 				<el-table-column prop="transDate" label="交易时间" />
 				<el-table-column prop="transType" label="交易类别" />
 				<el-table-column prop="transMoney" label="交易金额" />
@@ -16,8 +21,16 @@
 				<span>确定要打印凭条吗</span>
 				<template #footer>
 					<div class="flex justify-between">
-						<el-button class="w-20! h-10!" @click="receiptDialogVisible = false">取消</el-button>
-						<el-button class="w-20! h-10!" type="primary" @click="getReceipt">
+						<el-button
+							class="w-20! h-10!"
+							@click="receiptDialogVisible = false"
+							>取消</el-button
+						>
+						<el-button
+							class="w-20! h-10!"
+							type="primary"
+							@click="getReceipt"
+						>
 							确认
 						</el-button>
 					</div>
@@ -29,7 +42,9 @@
 			<el-button class="color-green!" @click="router.back()">{{
 				$t("back")
 			}}</el-button>
-			<el-button class="color-red!" @click="logOut">{{ $t("exit") }}</el-button>
+			<el-button class="color-red!" @click="logOut">{{
+				$t("exit")
+			}}</el-button>
 		</div>
 	</div>
 </template>
