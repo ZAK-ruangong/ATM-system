@@ -2,7 +2,12 @@
 	<div class="flex justify-center items-center relative">
 		<div class="flex flex-col items-center justify-around">
 			<p class="text-6">请输入您的密码：</p>
-			<el-input v-model="password" placeholder="请输入您的密码" :prefix-icon="Lock" class="h-10 w-60!" />
+			<el-input
+				v-model="password"
+				placeholder="请输入您的密码"
+				:prefix-icon="Lock"
+				class="h-10 w-60!"
+			/>
 			<p class="opacity-80 color-gray">输入密码时，请注意遮挡</p>
 		</div>
 		<div class="flex flex-col gap-6 absolute right-0">

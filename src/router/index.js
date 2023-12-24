@@ -24,15 +24,6 @@ const homeRoutes = [
 		path: "/inputPwd",
 		name: "输入密码",
 		component: () => import("@/views/home/inputPwd.vue"),
-		beforeEnter: (to, from, next) => {
-			// 如果已经有cardId了，就直接选择业务
-			const cardId = localStorage.getItem("cardId")
-			if (cardId) {
-				next("/businessChoices")
-			} else {
-				next()
-			}
-		}
 	}
 ]
 // 搜索页面的路由

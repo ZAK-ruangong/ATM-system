@@ -21,8 +21,16 @@
 				<span>确定要打印凭条吗</span>
 				<template #footer>
 					<div class="flex justify-between">
-						<el-button class="w-20! h-10!" @click="receiptDialogVisible = false">取消</el-button>
-						<el-button class="w-20! h-10!" type="primary" @click="getReceipt">
+						<el-button
+							class="w-20! h-10!"
+							@click="receiptDialogVisible = false"
+							>取消</el-button
+						>
+						<el-button
+							class="w-20! h-10!"
+							type="primary"
+							@click="getReceipt"
+						>
 							确认
 						</el-button>
 					</div>
@@ -74,6 +82,7 @@ const logOut = () => {
 	logout()
 	router.push("/")
 }
+
 onMounted(() => {
 	axios({
 		url: "/getUserRecepits",

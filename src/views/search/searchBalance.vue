@@ -5,7 +5,7 @@
 				<div>余额信息</div>
 				<div>BALANCE INFORMATION</div>
 			</div>
-			<el-card body-class="w-100 h-80">
+			<el-card body-class="w-100 h-60">
 				<div class="flex flex-col gap-15 items-start">
 					<div class="flex flex-col items-start">
 						<span class="text-6">余额：{{ balance }}</span>
@@ -17,7 +17,7 @@
 						>
 						<span>Available Amount Balance</span>
 					</div>
-					<div class="text-6">ATM当前可取现金额：10,000</div>
+					<!-- <div class="text-6">ATM当前可取现金额：10,000</div> -->
 				</div>
 			</el-card>
 			<div class="color-gray mt-10">
