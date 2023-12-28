@@ -7,8 +7,6 @@ import "virtual:uno.css"
 import "element-plus/dist/index.css"
 import axios from "axios"
 
-// 路由守卫
-import "@/router/guard/guard.js"
 // 组件库图标
 import * as ElementPlusIconsVue from "@element-plus/icons-vue"
 // 组件库样式

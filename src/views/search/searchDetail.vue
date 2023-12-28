@@ -5,12 +5,8 @@
 				<div>余额信息</div>
 				<!-- <div class="text-6">BALANCE INFORMATION</div> -->
 			</div>
-			<el-table
-				:data="balanceDetails"
-				fit
-				max-height="290"
-				style="width: 800px"
-			>
+			<el-table :data="balanceDetails" fit max-height="290" style="width: 800px"
+				:default-sort="{ prop: 'transDate', order: 'descending' }" v-loading="loading">
 				<el-table-column prop="transDate" label="交易时间" />
 				<el-table-column prop="transType" label="交易类别" />
 				<el-table-column prop="transMoney" label="交易金额" />
@@ -21,16 +17,8 @@
 				<span>确定要打印凭条吗</span>
 				<template #footer>
 					<div class="flex justify-between">
-						<el-button
-							class="w-20! h-10!"
-							@click="receiptDialogVisible = false"
-							>取消</el-button
-						>
-						<el-button
-							class="w-20! h-10!"
-							type="primary"
-							@click="getReceipt"
-						>
+						<el-button class="w-20! h-10!" @click="receiptDialogVisible = false">取消</el-button>
+						<el-button class="w-20! h-10!" type="primary" @click="getReceipt">
 							确认
 						</el-button>
 					</div>
@@ -58,7 +46,7 @@ import useCardStore from "@/store/card.js"
 
 const router = useRouter()
 const balanceDetails = reactive([])
-
+const loading = ref(false)
 // 打印凭条
 const receiptDialogVisible = ref(false)
 const getReceipt = () => {
@@ -84,6 +72,7 @@ const logOut = () => {
 }
 
 onMounted(() => {
+	loading.value = true
 	axios({
 		url: "/getUserRecepits",
 		method: "post",
@@ -91,8 +80,9 @@ onMounted(() => {
 			cardId: localStorage.getItem("cardId")
 		}
 	}).then((res) => {
+		loading.value = false
 		console.log(res.data)
-		// 存入算0，取款算1,转账算2
+		// 存入算0，取款算1,转账算2,生活缴费算3
 		for (let i = 0; i < res.data.length; i++) {
 			balanceDetails.push(res.data[i])
 			balanceDetails[i].transDate = balanceDetails[i].transDate
@@ -104,8 +94,11 @@ onMounted(() => {
 			} else if (res.data[i].transType === 1) {
 				balanceDetails[i].transType = "取款"
 				balanceDetails[i].remark = "无"
-			} else {
+			} else if (res.data[i].transType === 2) {
 				balanceDetails[i].transType = "转账"
+			} else {
+				balanceDetails[i].transType = "生活缴费"
+				balanceDetails[i].remark = "无"
 			}
 		}
 	})

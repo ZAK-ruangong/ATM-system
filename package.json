@@ -19,7 +19,6 @@
 		"axios": "^1.6.2",
 		"dayjs": "^1.11.10",
 		"element-plus": "^2.4.2",
-		"nprogress": "^0.2.0",
 		"pinia": "^2.1.7",
 		"pinia-plugin-persistedstate": "^3.2.0",
 		"vue": "^3.3.8",
@@ -46,7 +45,7 @@
 	},
 	"build": {
 		"appId": "com.electron.desktop",
-		"productName": "electron",
+		"productName": "atm_system",
 		"asar": true,
 		"copyright": "Copyright © 2022 electron",
 		"directories": {
@@ -65,7 +64,7 @@
 		"win": {
 			"target": [
 				{
-					"target": "nsis",
+					"target": "portable",
 					"arch": [
 						"x64"
 					]

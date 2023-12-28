@@ -43,7 +43,7 @@ const logOut = () => {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 40px;
+		gap: 8rem;
 	}
 }
 </style>

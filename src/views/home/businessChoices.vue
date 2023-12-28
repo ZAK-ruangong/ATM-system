@@ -1,6 +1,6 @@
 <template>
 	<div class="flex justify-around">
-		<div class="flex flex-col gap-6">
+		<div class="flex flex-col gap-12">
 			<el-button @click="router.push('/search')">{{
 				$t("search")
 			}}</el-button>
@@ -11,7 +11,7 @@
 				$t("changePwd")
 			}}</el-button>
 		</div>
-		<div class="flex flex-col gap-6">
+		<div class="flex flex-col gap-12">
 			<el-button @click="router.push('/withdrawal')">{{
 				$t("withdrawal")
 			}}</el-button>

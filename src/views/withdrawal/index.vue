@@ -17,14 +17,13 @@
 				:readonly="isReadonly" />
 			<div class="text-3 text-center">
 				<p>本机只提供100元面额人民币</p>
-				<p>且单笔体现最多不超过10000元</p>
+				<!-- <p>且单笔体现最多不超过10000元</p> -->
 			</div>
 		</div>
 
 		<div class="wd-right-sidebar flex flex-col items-end gap-8">
 			<el-button class="w-30! h-15! fw-700! opacity-80" @click="wdInputValue(2000)">2000</el-button>
-			<el-button class="w-30! h-15! fw-700! opacity-80"
-				@click="isReadonly = false; inputInsert.focus()">输入金额</el-button>
+			<el-button class="w-30! h-15! fw-700! opacity-80" @click="isReadonly = false; inputInsert.focus()">输入金额</el-button>
 			<el-button class="w-30! h-15! fw-700! opacity-80" @click="getCash">取款</el-button>
 			<el-button class="w-30! h-15! opacity-80 color-red! fw-700!" @click="router.back()">
 				返回</el-button>
@@ -46,10 +45,18 @@
 			<h1 class="mb-16! text-5! font-900! p-t-4! color-#333">
 				{{ stateInfo }}
 			</h1>
-			<div class="text-3 text-center absolute! bottom-9">
+			<div class="flex">
+				<div class="flex flex-col items-center">
+					<img :src="slotPic" class="w-70!" />
+					<div class="w-full text-center card h-50">
+						<img :src="moneyPic" class="w-50" />
+					</div>
+				</div>
+			</div>
+			<!-- <div class="text-3 text-center absolute! bottom-9">
 				<p>本机只提供100元面额人民币</p>
 				<p>且单笔体现最多不超过10000元</p>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="wd-right-sidebar flex flex-col items-end gap-8">
@@ -67,14 +74,16 @@
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { ElMessage } from "element-plus"
-import axios from "axios";
+import axios from "axios"
 
 // import axios from 'axios';
 
 const router = useRouter()
 
-const inputInsert = ref(null);
-
+const inputInsert = ref(null)
+// 图片
+const slotPic = ref("")
+const moneyPic = ref("")
 // 状态信息
 const stateInfo = computed(() => {
 	if (stateNumber.value === 1) {
@@ -116,13 +125,15 @@ const getCash = () => {
 				money: wdInput.value
 			}
 		}).then(res => {
-			loading.value = true;
+			loading.value = true
 			setTimeout(() => {
-				loading.value = false;
+				loading.value = false
 				if (res.data.res === 'success') {
-					stateNumber.value = 1;
+					stateNumber.value = 1
+					slotPic.value = new URL("../../assets/img/slot.png", import.meta.url)
+					moneyPic.value = new URL("../../assets/img/rmb.png", import.meta.url)
 				} else {
-					stateNumber.value = 2;
+					stateNumber.value = 2
 				}
 
 			}, 3000)
@@ -142,10 +153,10 @@ const alertMessage = (textMessage) => {
 }
 
 // 加载
-const loading = ref(false);
+const loading = ref(false)
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
 	margin: 0;
 	padding: 0;
@@ -155,4 +166,23 @@ const loading = ref(false);
 /* .wd-box {
 	background-color: #c8e0e4 !important;
 } */
+.card {
+	overflow-y: hidden;
+	transform: translateY(-12%);
+
+	img {
+		animation: move 2s ease-out infinite backwards;
+		border-radius: 20px;
+	}
+
+	@keyframes move {
+		0% {
+			transform: translateY(-100%);
+		}
+
+		100% {
+			transform: translateY(100%);
+		}
+	}
+}
 </style>

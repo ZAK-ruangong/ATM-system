@@ -14,7 +14,7 @@
 			<p class="opacity-80 color-gray">友情提示：不要对陌生账号转账</p>
 		</div>
 		<div>
-			<div class="flex flex-col gap-6">
+			<div class="flex flex-col gap-20">
 				<el-button class="color-green!" @click="transfer">{{
 					$t("confirm")
 				}}</el-button>

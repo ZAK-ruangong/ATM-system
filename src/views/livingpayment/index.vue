@@ -16,7 +16,7 @@
 
 			<div class="text-3 text-center absolute! bottom-9">
 				<p>本机只提供100元面额人民币</p>
-				<p>且单笔体现最多不超过10000元</p>
+				<!-- <p>且单笔体现最多不超过10000元</p> -->
 			</div>
 		</div>
 
@@ -55,7 +55,7 @@
 			/> -->
 			<div class="text-3 text-center absolute! bottom-9">
 				<p>本机只提供100元面额人民币</p>
-				<p>且单笔体现最多不超过10000元</p>
+				<!-- <p>且单笔体现最多不超过10000元</p> -->
 			</div>
 		</div>
 

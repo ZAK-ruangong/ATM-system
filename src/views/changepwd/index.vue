@@ -8,7 +8,8 @@
 			<el-input
 				v-model="oldPwd"
 				placeholder="请输入您的旧密码"
-				:prefix-icon="User"
+				:prefix-icon="Lock"
+				type="password"
 				class="h-10 w-60!"
 			/>
 			<p class="opacity-80 color-gray">输入密码时，请注意遮挡</p>
@@ -23,20 +24,22 @@
 			<el-input
 				v-model="newPwd"
 				placeholder="请输入您的新密码"
-				:prefix-icon="User"
+				:prefix-icon="Lock"
+				type="password"
 				class="h-10 w-60!"
 				v-if="!isConfirmed"
 			/>
 			<el-input
 				v-model="confirmPwd"
 				placeholder="请再次输入新密码"
-				:prefix-icon="User"
+				:prefix-icon="Lock"
+				type="password"
 				class="h-10 w-60!"
 				v-else
 			/>
 			<p class="opacity-80 color-gray">输入密码时，请注意遮挡</p>
 		</div>
-		<div class="flex flex-col gap-6">
+		<div class="flex flex-col gap-20">
 			<el-button
 				class="color-green!"
 				@click="confirmOld"
@@ -59,7 +62,7 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
-import { User } from "@element-plus/icons-vue"
+import { Lock } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
 import axios from "axios"
 
@@ -80,12 +83,12 @@ const confirmOld = () => {
 	}).then((res) => {
 		if (res.data.res === "success") {
 			ElMessage.success({
-				message: "旧密码校验成功"
+				message: res.data.meg
 			})
 			type.value = "new"
 		} else {
 			ElMessage.error({
-				message: "旧密码校验失败"
+				message: res.data.meg
 			})
 		}
 	})

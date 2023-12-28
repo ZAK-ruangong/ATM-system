@@ -27,49 +27,31 @@
 
 	<!-- S2 -->
 
-	<div
-	v-loading="loading"
-    element-loading-text="存款中"
-		v-show="stateNumber === 1"
-		class="wd-box flex items-start w-full p-8! relative!"
-	>
+	<div v-loading="loading" element-loading-text="存款中" v-show="stateNumber === 1"
+		class="wd-box flex items-start w-full p-8! relative!">
 		<div class="wd-left-sidebar flex flex-col items-end gap-8">
-			<el-button
-				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
-			></el-button>
-			<el-button
-				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
-			></el-button>
-			<el-button
-				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
-			></el-button>
-			<el-button
-				class="w-30! h-15! fw-700! opacity-80"
-				@click="depositMoney"
-				>放钞</el-button
-			>
+			<el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
+			<el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
+			<el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
+			<el-button class="w-30! h-15! fw-700! opacity-80" @click="depositMoney">放钞</el-button>
 		</div>
 
 		<div class="wd-content items-center flex flex-col w-full p-4 h-full!">
-			<h1
-				v-show="!isdeposit"
-				class="mb-4! text-5! font-900! p-t-4! color-#333"
-			>
+			<h1 v-show="!isdeposit" class="mb-4! text-5! font-900! p-t-4! color-#333">
 				请将现金放入存款槽
 			</h1>
-			<h1
-				v-show="isdeposit"
-				class="mb-4! text-5! font-900! p-t-4! color-#333"
-			>
+			<div class="flex" v-show="!isdeposit">
+				<div class="flex flex-col items-center">
+					<img :src="slotPic" class="w-70!" />
+					<div class="w-full text-center card h-50">
+						<img :src="moneyPic" class="w-50" />
+					</div>
+				</div>
+			</div>
+			<h1 v-show="isdeposit" class="mb-4! text-5! font-900! p-t-4! color-#333">
 				存款信息明细
 			</h1>
-			<el-table
-				v-show="isdeposit"
-				:data="depositData"
-				stripe
-				style="width: 24rem"
-				class="max-w-2xl! mb-14! max-h-50"
-			>
+			<el-table v-show="isdeposit" :data="depositData" stripe style="width: 24rem" class="max-w-2xl! mb-14! max-h-50">
 				<el-table-column prop="num" label="面值" />
 				<el-table-column prop="counts" label="数目" />
 				<el-table-column prop="account" label="交易金额" />
@@ -77,43 +59,28 @@
 
 			<div class="text-3 text-center absolute! bottom-9">
 				<p>本机只提供100元面额人民币</p>
-				<p>且单笔体现最多不超过10000元</p>
+				<!-- <p>且单笔体现最多不超过10000元</p> -->
 			</div>
 		</div>
 
 		<div class="wd-right-sidebar flex flex-col items-end gap-8">
-			<el-button
-				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
-			></el-button>
-			<el-button
-				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
-			></el-button>
-			<el-button
-				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
-			></el-button>
-			<el-button
-				v-show="isdeposit"
-				class="w-30! h-15! fw-700! opacity-80"
-				@click="finishDeposit"
-				>结束放钞</el-button
-			>
-			<el-button
-				v-show="!isdeposit"
-				class="color-red! w-30! h-15! fw-700! opacity-80"
-				@click="router.back()"
-				>返回</el-button
-			>
+			<el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
+			<el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
+			<el-button class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"></el-button>
+			<el-button v-show="isdeposit" class="w-30! h-15! fw-700! opacity-80" @click="finishDeposit">结束放钞</el-button>
+			<el-button v-show="!isdeposit" class="color-red! w-30! h-15! fw-700! opacity-80"
+				@click="router.back()">返回</el-button>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { useRouter } from "vue-router"
-import axios from "axios";
+import axios from "axios"
 // import { Loading } from "@element-plus/icons-vue/dist/types";
 
-const loading = ref(false);
+const loading = ref(false)
 
 const router = useRouter()
 const isdeposit = ref(false)
@@ -144,7 +111,7 @@ const stateNumber = ref(1)
 
 let numCount = 0
 const depositMoney = () => {
-	LoadWait();
+	LoadWait()
 	axios({
 		url: "/saveMoney", method: "post", params: {
 			cardId: localStorage.getItem('cardId'),
@@ -165,14 +132,21 @@ const finishDeposit = () => {
 }
 
 const LoadWait = () => {
-	loading.value = true;
+	loading.value = true
 	setTimeout(() => {
-		loading.value = false;
-	},3000)
+		loading.value = false
+	}, 3000)
 }
+// 动画
+const slotPic = ref("")
+const moneyPic = ref("")
+onMounted(() => {
+	slotPic.value = new URL("../../assets/img/slot.png", import.meta.url)
+	moneyPic.value = new URL("../../assets/img/rmb.png", import.meta.url)
+})
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
 	margin: 0;
 	padding: 0;
@@ -182,4 +156,24 @@ const LoadWait = () => {
 /* .wd-box {
 	background-color: #c8e0e4 !important;
 } */
+
+.card {
+	overflow-y: hidden;
+	transform: translateY(-12%);
+
+	img {
+		animation: move 2s ease-out infinite backwards;
+		border-radius: 20px;
+	}
+
+	@keyframes move {
+		0% {
+			transform: translateY(100%);
+		}
+
+		100% {
+			transform: translateY(-100%);
+		}
+	}
+}
 </style>
