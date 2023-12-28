@@ -84,6 +84,8 @@ npm run build
 
 ## 贡献者
 
-<table>  <tr>    <td align="center"><a href="https://github.com/SongHunangshang"><img src="https://avatars.githubusercontent.com/u/108913118?v=4" width="100px;" alt=""/><br /><sub><b>😅&nbsp;隽宇杭</b></sub></a><br />
-    <td align="center"><a href="https://github.com/xxqwq"><img src="https://avatars.githubusercontent.com/u/95366706?v=4" width="100px;" alt=""/><br /><sub><b>🤔&nbsp;李翔</b></sub></a><br />
-    <td align="center"><a href="https://github.com/Licne"><img src="https://avatars.githubusercontent.com/u/95366224?v=4" width="100px;" alt=""/><br /><sub><b>😭&nbsp;王金明</b></sub></a><br /></tr></table>
+<table>  <tr style="display:flex;justify-content:space-between;">    
+    <td align="center" style="flex:1;"><a href="https://github.com/SongHunangshang" ><img src="https://avatars.githubusercontent.com/u/108913118?v=4" width="100px;" style="border-radius:50%;" alt=""/><br /><sub><b>😅&nbsp;隽宇杭</b></sub></a><br />
+    <td align="center" style="flex:1;"><a href="https://github.com/xxqwq"><img src="https://avatars.githubusercontent.com/u/95366706?v=4" width="100px;" style="border-radius:50%;" alt=""/><br /><sub><b>🤔&nbsp;李翔</b></sub></a><br />
+    <td align="center" style="flex:1;"><a href="https://github.com/Licne"><img src="https://avatars.githubusercontent.com/u/95366224?v=4" width="100px;" style="border-radius:50%;" alt=""/><br /><sub><b>😭&nbsp;王金明</b></sub></a><br /></tr></table>
+
