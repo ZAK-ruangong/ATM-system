@@ -1,5 +1,8 @@
 <template>
-	<div class="flex justify-around">
+	<div 
+		v-loading="loading"
+    	element-loading-text="Loading..."
+		class="flex justify-around">
 		<div class="flex flex-col items-center justify-around">
 			<p class="text-6">转入账号/Account：{{ route.query.transCard }}</p>
 			<el-input
@@ -31,8 +34,15 @@ import axios from "axios"
 const route = useRoute()
 const router = useRouter()
 const money = ref("")
+const loading = ref(false);
 // 转账
 const transfer = () => {
+
+	loading.value = true;
+	setTimeout(() => {
+		loading.value = false;
+	},3000)
+
 	axios({
 		url: "/transferMoney",
 		method: "post",

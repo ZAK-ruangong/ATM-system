@@ -3,7 +3,7 @@
 		<div class="text-center">
 			<div class="text-6 mb-10">
 				<div>余额信息</div>
-				<div>BALANCE INFORMATION</div>
+				<!-- <div>BALANCE INFORMATION</div> -->
 			</div>
 			<el-card body-class="w-100 h-60">
 				<div class="flex flex-col gap-15 items-start">

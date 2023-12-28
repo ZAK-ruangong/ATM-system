@@ -3,7 +3,7 @@
 		<div class="text-center">
 			<div class="text-6 mb-10">
 				<div>余额信息</div>
-				<div class="text-6">BALANCE INFORMATION</div>
+				<!-- <div class="text-6">BALANCE INFORMATION</div> -->
 			</div>
 			<el-table
 				:data="balanceDetails"

@@ -28,6 +28,8 @@
 	<!-- S2 -->
 
 	<div
+	v-loading="loading"
+    element-loading-text="存款中"
 		v-show="stateNumber === 1"
 		class="wd-box flex items-start w-full p-8! relative!"
 	>
@@ -42,16 +44,9 @@
 				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
 			></el-button>
 			<el-button
-				v-show="isdeposit"
 				class="w-30! h-15! fw-700! opacity-80"
-				@click="finishDeposit"
-				>结束放钞</el-button
-			>
-			<el-button
-				v-show="!isdeposit"
-				class="color-red! w-30! h-15! fw-700! opacity-80"
-				@click="router.back()"
-				>返回</el-button
+				@click="depositMoney"
+				>放钞</el-button
 			>
 		</div>
 
@@ -97,9 +92,16 @@
 				class="w-30! h-15! fw-700! opacity-0 hover:cursor-default"
 			></el-button>
 			<el-button
+				v-show="isdeposit"
 				class="w-30! h-15! fw-700! opacity-80"
-				@click="depositMoney"
-				>放钞</el-button
+				@click="finishDeposit"
+				>结束放钞</el-button
+			>
+			<el-button
+				v-show="!isdeposit"
+				class="color-red! w-30! h-15! fw-700! opacity-80"
+				@click="router.back()"
+				>返回</el-button
 			>
 		</div>
 	</div>
@@ -108,6 +110,11 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
+import axios from "axios";
+// import { Loading } from "@element-plus/icons-vue/dist/types";
+
+const loading = ref(false);
+
 const router = useRouter()
 const isdeposit = ref(false)
 const depositData = ref([])
@@ -137,15 +144,31 @@ const stateNumber = ref(1)
 
 let numCount = 0
 const depositMoney = () => {
+	LoadWait();
+	axios({
+		url: "/saveMoney", method: "post", params: {
+			cardId: localStorage.getItem('cardId'),
+			money: DEPOSIT_DATA[numCount].account
+		}
+	}).then(res => {
+		console.log(res)
+	})
 	if (numCount === 0) isdeposit.value = true
+	depositData.value.push(DEPOSIT_DATA[numCount])
 	numCount++
-	depositData.value.push(DEPOSIT_DATA[numCount - 1])
 }
 
 const finishDeposit = () => {
 	isdeposit.value = false
 	numCount = 0
 	depositData.value = []
+}
+
+const LoadWait = () => {
+	loading.value = true;
+	setTimeout(() => {
+		loading.value = false;
+	},3000)
 }
 </script>
 
@@ -156,7 +179,7 @@ const finishDeposit = () => {
 	box-sizing: border-box;
 }
 
-.wd-box {
+/* .wd-box {
 	background-color: #c8e0e4 !important;
-}
+} */
 </style>
