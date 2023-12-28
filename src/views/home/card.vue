@@ -32,6 +32,9 @@
 import { ref, onMounted } from "vue"
 import { i18n } from "@/utils/i18n"
 import { useRouter } from "vue-router"
+import useCardStore from "@/store/card.js"
+
+const { login } = useCardStore()
 
 const router = useRouter()
 
@@ -46,7 +49,7 @@ const changeLanguage = () => {
 }
 // 插卡
 const put = () => {
-	localStorage.setItem("cardId", "6100700240001078666")
+	login("6100700240001078666")
 	router.push("/inputPwd")
 }
 

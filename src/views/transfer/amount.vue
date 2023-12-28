@@ -5,12 +5,19 @@
 		class="flex justify-around">
 		<div class="flex flex-col items-center justify-around">
 			<p class="text-6">转入账号/Account：{{ route.query.transCard }}</p>
-			<el-input v-model="money" placeholder="请输入转账金额" :prefix-icon="Money" class="h-10 w-60!" v-if="!isConfirmed" />
+			<el-input
+				v-model="money"
+				placeholder="请输入转账金额"
+				:prefix-icon="Money"
+				class="h-10 w-60!"
+			/>
 			<p class="opacity-80 color-gray">友情提示：不要对陌生账号转账</p>
 		</div>
 		<div>
 			<div class="flex flex-col gap-6">
-				<el-button class="color-green!" @click="transfer">{{ $t("confirm") }}</el-button>
+				<el-button class="color-green!" @click="transfer">{{
+					$t("confirm")
+				}}</el-button>
 				<el-button class="color-red!" @click="router.back()">{{
 					$t("back")
 				}}</el-button>
@@ -37,21 +44,25 @@ const transfer = () => {
 	},3000)
 
 	axios({
-		url: '/transferMoney',
-		method: 'post',
+		url: "/transferMoney",
+		method: "post",
 		params: {
-			userCard: localStorage.getItem('cardId'),
+			userCard: localStorage.getItem("cardId"),
 			transCard: route.query.transCard,
 			money: money.value
 		}
-	}).then(res => {
-		if (res.data.res === 'success') {
-			ElMessage.success('转账成功')
-			router.push('/businessChoices')
-		} else {
-			ElMessage.error('转账失败')
-		}
 	})
+		.then((res) => {
+			if (res.data.res === "success") {
+				ElMessage.success(res.data.meg)
+				router.push("/businessChoices")
+			} else {
+				ElMessage.error(res.data.meg)
+			}
+		})
+		.catch((err) => {
+			ElMessage.error("账号不存在")
+		})
 }
 </script>
 

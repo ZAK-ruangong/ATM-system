@@ -21,7 +21,7 @@
 			<el-button @click="router.push('/livingpayment')">{{
 				$t("pay")
 			}}</el-button>
-			<el-button class="color-red!" @click="logout">{{
+			<el-button class="color-red!" @click="logOut">{{
 				$t("exit")
 			}}</el-button>
 		</div>
@@ -30,9 +30,13 @@
 
 <script setup>
 import { useRouter } from "vue-router"
+import useCardStore from "@/store/card.js"
+
+const { logout } = useCardStore()
 const router = useRouter()
-const logout = () => {
-	localStorage.removeItem('cardId')
+
+const logOut = () => {
+	logout()
 	router.push("/")
 }
 </script>

@@ -5,7 +5,12 @@
 				<div>余额信息</div>
 				<!-- <div class="text-6">BALANCE INFORMATION</div> -->
 			</div>
-			<el-table :data="balanceDetails" fit max-height="290" style="width: 800px;">
+			<el-table
+				:data="balanceDetails"
+				fit
+				max-height="290"
+				style="width: 800px"
+			>
 				<el-table-column prop="transDate" label="交易时间" />
 				<el-table-column prop="transType" label="交易类别" />
 				<el-table-column prop="transMoney" label="交易金额" />
@@ -16,8 +21,16 @@
 				<span>确定要打印凭条吗</span>
 				<template #footer>
 					<div class="flex justify-between">
-						<el-button class="w-20! h-10!" @click="receiptDialogVisible = false">取消</el-button>
-						<el-button class="w-20! h-10!" type="primary" @click="getReceipt">
+						<el-button
+							class="w-20! h-10!"
+							@click="receiptDialogVisible = false"
+							>取消</el-button
+						>
+						<el-button
+							class="w-20! h-10!"
+							type="primary"
+							@click="getReceipt"
+						>
 							确认
 						</el-button>
 					</div>
@@ -29,7 +42,9 @@
 			<el-button class="color-green!" @click="router.back()">{{
 				$t("back")
 			}}</el-button>
-			<el-button class="color-red!">{{ $t("exit") }}</el-button>
+			<el-button class="color-red!" @click="logOut">{{
+				$t("exit")
+			}}</el-button>
 		</div>
 	</div>
 </template>
@@ -37,8 +52,9 @@
 <script setup>
 import { ref, reactive, onMounted } from "vue"
 import { useRouter } from "vue-router"
-import axios from 'axios'
-import * as XLSX from 'xlsx';
+import axios from "axios"
+import * as XLSX from "xlsx"
+import useCardStore from "@/store/card.js"
 
 const router = useRouter()
 const balanceDetails = reactive([])
@@ -46,44 +62,52 @@ const balanceDetails = reactive([])
 // 打印凭条
 const receiptDialogVisible = ref(false)
 const getReceipt = () => {
-	const data = balanceDetails.map(row => ({
-    交易时间: row.transDate,
-    交易类别: row.transType,
-    交易金额: row.transMoney,
-    // 可用余额: row.balance,
-    转账用户: row.remark,
-  }));
-	const ws = XLSX.utils.json_to_sheet(data);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+	const data = balanceDetails.map((row) => ({
+		交易时间: row.transDate,
+		交易类别: row.transType,
+		交易金额: row.transMoney,
+		// 可用余额: row.balance,
+		转账用户: row.remark
+	}))
+	const ws = XLSX.utils.json_to_sheet(data)
+	const wb = XLSX.utils.book_new()
+	XLSX.utils.book_append_sheet(wb, ws, "Sheet1")
 
-  XLSX.writeFile(wb, 'exported_data.xlsx');
+	XLSX.writeFile(wb, "凭条.xlsx")
 	receiptDialogVisible.value = false
+}
+// 退卡
+const { logout } = useCardStore()
+const logOut = () => {
+	logout()
+	router.push("/")
 }
 
 onMounted(() => {
 	axios({
-		url: '/getUserRecepits',
-		method: 'post',
+		url: "/getUserRecepits",
+		method: "post",
 		params: {
-			cardId: localStorage.getItem('cardId')
+			cardId: localStorage.getItem("cardId")
 		}
-	}).then(res => {
+	}).then((res) => {
 		console.log(res.data)
-		// 存入算0，生活缴费算1,支出算2
+		// 存入算0，取款算1,转账算2
 		for (let i = 0; i < res.data.length; i++) {
 			balanceDetails.push(res.data[i])
-			balanceDetails[i].transDate = balanceDetails[i].transDate.replace('T', ' ').slice(0,16)
+			balanceDetails[i].transDate = balanceDetails[i].transDate
+				.replace("T", " ")
+				.slice(0, 16)
 			if (res.data[i].transType === 0) {
-				balanceDetails[i].transType = '存入'
+				balanceDetails[i].transType = "存入"
 				balanceDetails[i].remark = res.data[i].cardId
 			} else if (res.data[i].transType === 1) {
-				balanceDetails[i].transType = '生活缴费'
+				balanceDetails[i].transType = "取款"
+				balanceDetails[i].remark = "无"
 			} else {
-				balanceDetails[i].transType = '支出'
+				balanceDetails[i].transType = "转账"
 			}
 		}
-		console.log(balanceDetails)
 	})
 })
 </script>
